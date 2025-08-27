@@ -161,9 +161,6 @@ class _JsonEnumDropdownState extends State<JsonEnumDropdown> with AfterInit {
       textStyle = style.text;
     }
     _updateMinWidth(context, textStyle);
-    print(
-      '${textStyle.letterSpacing} ${textStyle.height} ${textStyle.fontSize}',
-    );
     final span = TextSpan(text: _controller.text, style: textStyle);
     final scale = textStyle.height ?? 1.0;
     final fontSize = textStyle.fontSize ?? 16.0;
@@ -235,7 +232,6 @@ class JsonValueDropdownEditor extends StatefulWidget {
 class _JsonValueDropdownEditorState extends State<JsonValueDropdownEditor> {
   @override
   Widget build(BuildContext context) {
-    print('${widget.string} $enums');
     return Container(
       constraints: BoxConstraints(minWidth: 200, maxWidth: 200),
       child: DropdownMenu(

@@ -128,6 +128,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  json_schema:
+    dependency: "direct main"
+    description:
+      path: "../json_schema"
+      relative: true
+    source: path
+    version: "1.0.0"
   leak_tracker:
     dependency: transitive
     description:

@@ -115,13 +115,6 @@ class _JsonValueTextEditorState extends State<JsonValueTextEditor>
     } else {
       textStyle = style.text;
     }
-    /*print(
-      '${textStyle.letterSpacing} ${textStyle.height} ${textStyle.fontSize}',
-    );*/
-    /*final span = _controller.buildTextSpan(
-      context: context,
-      withComposing: false,
-    );*/
     final span = TextSpan(text: _controller.text, style: textStyle);
     final scale = textStyle.height ?? 1.0;
     final fontSize = textStyle.fontSize ?? 16.0;
@@ -140,16 +133,10 @@ class _JsonValueTextEditorState extends State<JsonValueTextEditor>
       height =
           fontSize +
           (widget.style.input.contentPadding?.collapsedSize.height ?? 0);
-      print(
-        'a $fontSize width ${tp.width} $width, height ${tp.height} ${widget.style.text.height} $height',
-      );
     } else {
       height =
           tp.height +
           (widget.style.input.contentPadding?.collapsedSize.height ?? 0);
-      print(
-        'b $fontSize width ${tp.width} $width, height ${tp.height} ${widget.style.text.height} $height',
-      );
     }
 
     if (!mounted) return;

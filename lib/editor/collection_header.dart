@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:json_schema/json_schema.dart';
 import 'package:json_widget/editor/indent.dart';
 import 'package:json_widget/json_widget.dart';
 

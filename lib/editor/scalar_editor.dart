@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:json_schema/json_schema.dart';
 import 'package:json_widget/editor/dropdown.dart';
 import 'package:json_widget/editor/indent.dart';
 import 'package:json_widget/editor/text_editor.dart';

@@ -103,13 +103,6 @@ class _JsonKeyEditorState extends State<JsonKeyEditor> with AfterInit {
     } else {
       textStyle = style.key;
     }
-    print(
-      '${textStyle.letterSpacing} ${textStyle.height} ${textStyle.fontSize}',
-    );
-    /*final span = _controller.buildTextSpan(
-      context: context,
-      withComposing: false,
-    );*/
     final span = TextSpan(text: _controller.text, style: textStyle);
     final scale = textStyle.height ?? 1.0;
     final fontSize = textStyle.fontSize ?? 16.0;
@@ -132,24 +125,10 @@ class _JsonKeyEditorState extends State<JsonKeyEditor> with AfterInit {
       height =
           tp.height * 1 / 1.2 +
           (widget.style.input.contentPadding?.collapsedSize.height ?? 0);
-      print(
-        'a $fontSize width ${tp.width} $width, height ${tp.height} ${widget.style.key.height} $height',
-      );
-      /*} else {
-        height =
-            fontSize * 2 * scale +
-            (widget.style.input.contentPadding?.collapsedSize.height ?? 0);
-        print(
-          'a width ${tp.width} $width, height ${tp.height} ${widget.style.key.height} $height',
-        );
-      }*/
     } else {
       height =
           tp.height +
           (widget.style.input.contentPadding?.collapsedSize.height ?? 0);
-      print(
-        'b $fontSize width ${tp.width} $width, height ${tp.height} ${widget.style.key.height} $height',
-      );
     }
 
     if (!mounted) return;
@@ -321,9 +300,6 @@ class _JsonKeyDropdownState extends State<JsonKeyDropdown> with AfterInit {
       textStyle = style.key;
     }
     _updateMinWidth(context, textStyle);
-    print(
-      '${textStyle.letterSpacing} ${textStyle.height} ${textStyle.fontSize}',
-    );
     /*final span = _controller.buildTextSpan(
       context: context,
       withComposing: false,

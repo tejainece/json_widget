@@ -10,11 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_typeahead: ^5.2.0
+  json_schema:
+    git: git@github.com:tejainece/json_schema.git
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+
+dependency_overrides:
+  json_schema:
+    path: ../json_schema
 
 flutter:
   uses-material-design: true

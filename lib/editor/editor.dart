@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:json_schema/json_schema.dart';
 import 'package:json_widget/editor/collection_header.dart';
 import 'package:json_widget/editor/indent.dart';
 import 'package:json_widget/json_widget.dart';
@@ -15,6 +16,10 @@ TODO:
 
 class JsonEditorStyle {
   final double indent;
+
+  final double indentThickness;
+
+  final Color indentColor;
 
   final double propertyValueSpacing;
 
@@ -34,10 +39,12 @@ class JsonEditorStyle {
 
   final InputDecorationTheme dropdown;
 
-  static const double _textSize = 12;
+  static const double _textSize = 16;
 
   const JsonEditorStyle({
-    this.indent = 32,
+    this.indent = 24,
+    this.indentThickness = 2,
+    this.indentColor = Colors.grey,
     this.propertyValueSpacing = 5,
     this.expanderIconSize = 16,
     this.optionsIconSize = 16,
@@ -48,13 +55,13 @@ class JsonEditorStyle {
     ),
     this.text = const TextStyle(fontSize: _textSize),
     this.colon = const TextStyle(
-      fontSize: _textSize + 4,
+      fontSize: _textSize,
       color: Color.fromRGBO(0, 0, 0, 1.0),
       fontWeight: FontWeight.bold,
     ),
     this.input = const InputDecoration(
       isDense: true,
-      contentPadding: EdgeInsets.symmetric(vertical: 10),
+      contentPadding: EdgeInsets.symmetric(vertical: 5),
       filled: true,
       fillColor: Colors.white,
       focusColor: Color.fromRGBO(200, 200, 200, 1.0),
@@ -267,7 +274,7 @@ class _JsonObjectEditorState extends State<JsonObjectEditor> {
       style: style,
       indents: widget.indents + 1,
       /* TODO paddingLeft: widget.showHeader ? style.expanderIconSize : 0,*/
-      key: Key('${entry.key}: ${entry.hashCode}'),
+      key: Key('${entry.key}'),
       actions: [
         MenuItemButton(
           onPressed: () {
@@ -632,7 +639,7 @@ class _JsonPropertyEditorState extends State<JsonPropertyEditor> {
               object: (propertyValue as Map).cast<String, dynamic>(),
               schema: schema,
               style: style,
-              indents: widget.indents + 1,
+              indents: widget.indents,
               showHeader: false,
               actions: [],
               onChange: (json) {
@@ -644,7 +651,7 @@ class _JsonPropertyEditorState extends State<JsonPropertyEditor> {
               list: propertyValue,
               schema: schema,
               style: style,
-              indents: widget.indents + 1,
+              indents: widget.indents,
               showHeader: false,
               actions: [],
               onChange: (json) {
@@ -768,7 +775,7 @@ class _JsonListEditorState extends State<JsonListEditor> {
         object: value.cast<String, dynamic>(),
         schema: widget.schema?.schemaForIndex(index),
         style: style,
-        indents: widget.indents,
+        indents: widget.indents + 1,
         // TODO paddingLeft: style.expanderIconSize,
         key: Key('$index'),
         actions: [
@@ -794,7 +801,7 @@ class _JsonListEditorState extends State<JsonListEditor> {
         list: value,
         schema: widget.schema?.schemaForIndex(index),
         style: style,
-        indents: widget.indents,
+        indents: widget.indents + 1,
         // TODO paddingLeft: style.expanderIconSize,
         key: Key('$index'),
         actions: [
@@ -821,7 +828,7 @@ class _JsonListEditorState extends State<JsonListEditor> {
           value: value,
           schema: widget.schema?.schemaForIndex(index),
           style: style,
-          indents: widget.indents,
+          indents: widget.indents + 1,
           paddingLeft: 0,
           key: Key('$index'),
           autoFocus: false,

@@ -19,19 +19,31 @@ class _JsonIndentWidgetState extends State<JsonIndentWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        for (int i = 0; i < indents - 2; i++)
+        for (int i = 0; i < indents - 1; i++)
           Container(
             width: style.indent,
             // height: style.indent,
             height: double.infinity,
-            child: CustomPaint(painter: _JsonIndentPainter(bent: false)),
+            child: CustomPaint(
+              painter: _JsonIndentPainter(
+                bent: false,
+                style: style,
+                color: colors[i % colors.length],
+              ),
+            ),
           ),
         if (indents > 0)
           Container(
             width: style.indent,
             // height: style.indent,
             height: double.infinity,
-            child: CustomPaint(painter: _JsonIndentPainter(bent: true)),
+            child: CustomPaint(
+              painter: _JsonIndentPainter(
+                bent: true,
+                style: style,
+                color: colors[(indents - 1) % colors.length],
+              ),
+            ),
           ),
       ],
     );
@@ -40,18 +52,29 @@ class _JsonIndentWidgetState extends State<JsonIndentWidget> {
   int get indents => widget.indents;
 
   JsonEditorStyle get style => widget.style;
+
+  static const colors = [Colors.blue, Colors.purple, Colors.cyan];
 }
 
 class _JsonIndentPainter extends CustomPainter {
   final bool bent;
 
-  const _JsonIndentPainter({required this.bent});
+  final JsonEditorStyle style;
+
+  final Color color;
+
+  const _JsonIndentPainter({
+    required this.bent,
+    required this.style,
+    required this.color,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+      ..color = color
+      ..strokeWidth = style.indentThickness;
     if (!bent) {
       final path = Path()
         ..moveTo(size.width / 2, 0)
