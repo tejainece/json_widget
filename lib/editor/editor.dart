@@ -147,29 +147,33 @@ class _JsonWidgetState extends State<JsonWidget> {
         actions: [],
       );
     }
-    return Scrollbar(
-      thickness: 12.0,
-      trackVisibility: true,
-      interactive: true,
-      controller: _verticalController,
-      scrollbarOrientation: ScrollbarOrientation.right,
-      thumbVisibility: true,
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
       child: Scrollbar(
         thickness: 12.0,
         trackVisibility: true,
         interactive: true,
-        controller: _horizontalController,
-        scrollbarOrientation: ScrollbarOrientation.bottom,
+        controller: _verticalController,
+        scrollbarOrientation: ScrollbarOrientation.right,
         thumbVisibility: true,
-        notificationPredicate: (ScrollNotification notif) => notif.depth == 1,
-        child: SingleChildScrollView(
-          controller: _verticalController,
-          padding: EdgeInsets.only(bottom: 16),
+        child: Scrollbar(
+          thickness: 12.0,
+          trackVisibility: true,
+          interactive: true,
+          controller: _horizontalController,
+          scrollbarOrientation: ScrollbarOrientation.bottom,
+          thumbVisibility: true,
+          notificationPredicate: (ScrollNotification notif) => notif.depth == 1,
           child: SingleChildScrollView(
-            primary: false,
-            controller: _horizontalController,
-            scrollDirection: Axis.horizontal,
-            child: child,
+            controller: _verticalController,
+            padding: EdgeInsets.only(bottom: 16),
+            child: SingleChildScrollView(
+              primary: false,
+              controller: _horizontalController,
+              scrollDirection: Axis.horizontal,
+              child: child,
+            ),
           ),
         ),
       ),
