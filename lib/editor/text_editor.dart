@@ -100,6 +100,7 @@ class _JsonValueTextEditorState extends State<JsonValueTextEditor>
           return KeyEventResult.ignored;
         },
       )..addListener(() {
+        if (mounted) setState(() {});
         if (!_focusNode.hasFocus) {
           _submit();
         }

@@ -121,6 +121,7 @@ class _JsonEnumDropdownState extends State<JsonEnumDropdown> with AfterInit {
           return KeyEventResult.ignored;
         },
       )..addListener(() {
+        if (mounted) setState(() {});
         if (!_focusNode.hasFocus) {
           _submit();
         }

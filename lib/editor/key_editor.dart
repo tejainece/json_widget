@@ -38,7 +38,6 @@ class _JsonKeyEditorState extends State<JsonKeyEditor> with AfterInit {
         // maxHeight: height,
       ),
       child: TextField(
-        autofocus: widget.autoFocus,
         controller: _controller,
         style: style.key,
         cursorHeight: style.key.fontSize,
@@ -78,6 +77,7 @@ class _JsonKeyEditorState extends State<JsonKeyEditor> with AfterInit {
           return KeyEventResult.ignored;
         },
       )..addListener(() {
+        if (mounted) setState(() {});
         if (!_focusNode.hasFocus) {
           _submit();
         }
@@ -260,6 +260,7 @@ class _JsonKeyDropdownState extends State<JsonKeyDropdown> with AfterInit {
           return KeyEventResult.ignored;
         },
       )..addListener(() {
+        if (mounted) setState(() {});
         if (!_focusNode.hasFocus) {
           _submit();
         }

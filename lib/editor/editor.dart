@@ -63,7 +63,7 @@ class JsonEditorStyle {
       isDense: true,
       contentPadding: EdgeInsets.symmetric(vertical: 5),
       filled: true,
-      fillColor: Colors.white,
+      fillColor: Colors.transparent,
       focusColor: Color.fromRGBO(200, 200, 200, 1.0),
       hoverColor: Color.fromRGBO(225, 225, 225, 1.0),
       border: OutlineInputBorder(
