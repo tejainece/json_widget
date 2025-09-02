@@ -166,7 +166,7 @@ class _JsonWidgetState extends State<JsonWidget> {
           notificationPredicate: (ScrollNotification notif) => notif.depth == 1,
           child: SingleChildScrollView(
             controller: _verticalController,
-            padding: EdgeInsets.only(bottom: 16),
+            padding: EdgeInsets.only(right: 16, bottom: 16),
             child: SingleChildScrollView(
               primary: false,
               controller: _horizontalController,
