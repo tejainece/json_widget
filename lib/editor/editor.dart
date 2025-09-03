@@ -272,13 +272,13 @@ class _JsonObjectEditorState extends State<JsonObjectEditor> {
 
   Widget _buildItem(BuildContext context, MapEntry<String, dynamic> entry) {
     return JsonPropertyEditor(
+      key: Key('${entry.key}: ${entry.value}'),
       property: entry,
       schema: schema?.properties?[entry.key],
       possibleKeys: allProperties,
       style: style,
       indents: widget.indents + 1,
       /* TODO paddingLeft: widget.showHeader ? style.expanderIconSize : 0,*/
-      key: Key('${entry.key}'),
       actions: [
         MenuItemButton(
           onPressed: () {
@@ -382,7 +382,7 @@ class _JsonObjectEditorState extends State<JsonObjectEditor> {
 
   bool _expanded = true;
 
-  Map<String, dynamic> get object => widget.object;
+  late Map<String, dynamic> object = widget.object;
 
   JsonEditorStyle get style => widget.style;
 
