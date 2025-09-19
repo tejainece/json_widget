@@ -183,19 +183,20 @@ class _JsonWidgetState extends State<JsonWidget> {
     setState(() {
       data = v;
     });
-    widget.onChange(cloneJson(data));
+    // widget.onChange(cloneJson(data));
+    widget.onChange(data);
   }
 
   @override
   void initState() {
     super.initState();
-    data = cloneJson(widget.data);
+    data = widget.data; // cloneJson(widget.data);
   }
 
   @override
   void didUpdateWidget(covariant JsonWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    data = cloneJson(oldWidget.data);
+    data = widget.data; // cloneJson(oldWidget.data);
   }
 
   final ScrollController _verticalController = ScrollController();
@@ -209,19 +210,6 @@ class _JsonWidgetState extends State<JsonWidget> {
     _horizontalController.dispose();
     super.dispose();
   }
-}
-
-dynamic cloneJson(dynamic json) {
-  if (json is Map) {
-    final ret = <String, dynamic>{};
-    for (final entry in json.entries) {
-      ret[entry.key] = cloneJson(entry.value);
-    }
-    return ret;
-  } else if (json is List) {
-    return json.map(cloneJson).toList();
-  }
-  return json;
 }
 
 class JsonObjectEditor extends StatefulWidget {
@@ -873,4 +861,17 @@ class OptBox<T> {
   final T? value;
 
   const OptBox(this.value);
+}
+
+dynamic cloneJson(dynamic json) {
+  if (json is Map) {
+    final ret = <String, dynamic>{};
+    for (final entry in json.entries) {
+      ret[entry.key] = cloneJson(entry.value);
+    }
+    return ret;
+  } else if (json is List) {
+    return json.map(cloneJson).toList();
+  }
+  return json;
 }
